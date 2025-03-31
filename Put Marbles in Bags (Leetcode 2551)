@@ -1,0 +1,17 @@
+class Solution {
+    public long putMarbles(int[] weights, int k) {
+        int n = weights.length;
+        long ans[] = new long[n - 1];
+        for(int i = 0; i < n - 1; i++) {
+            ans[i] = weights[i] + weights[i + 1];
+        }
+        Arrays.sort(ans);
+        long mini = 0;
+        long maxi = 0;
+        for(int i = 0; i < k - 1; i++) {
+            mini += ans[i];
+            maxi += ans[n - 2 - i];
+        }
+        return maxi - mini;
+    }
+}
