@@ -1,0 +1,16 @@
+class Solution {
+    public long maximumValueSum(int[] nums, int k, int[][] edges) {
+        long sum = 0;
+        int minLoss = Integer.MAX_VALUE;
+        int count = 0;
+        for(int i = 0; i < nums.length; i++) {
+            minLoss = Math.min(minLoss , Math.abs(nums[i] - (nums[i] ^ k)));
+            if((nums[i] ^ k) > nums[i]) {
+                nums[i] ^= k;
+                count++;
+            }
+            sum += nums[i];
+        }
+        return (count % 2 == 1) ? sum - minLoss : sum;
+    }
+}
